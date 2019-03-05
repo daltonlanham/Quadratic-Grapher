@@ -1,0 +1,144 @@
+<!--   David's Software Development Class 
+  Qudratic and general graphing application for soft dev class. Updated 2019.
+  Using bootstrap 3, we will try to keep responsive features to be used on mobile device -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Polynomial Solver</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="setup.js"></script>
+    <script type="text/javascript" src="quadScript.js"></script>
+    <!-- styles to override bootstrap settings or add our own styles -->
+    <style>
+    /* Set gray background color and 100% height */
+    .sidenav {
+      height: 100%;
+    }
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    .formInfo {
+      color: black;
+      background-color: #F6D000;
+      padding: 2px;
+      border-radius: 10px;
+    }
+    .coeff {
+      width: 90%;
+      background-color: #002252;
+      padding: 10px;
+      border-radius: 20px;
+    }
+
+    .myResults {
+      margin-top: 5px;
+      width: 90%;
+      background-color: #002252;
+      padding: 10px;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+    }
+    .myButtons {
+      margin-top: 5px;
+      padding: 2px;
+      width: 90%;
+      background-color: transparent;
+      position: relative;
+      text-align: center;
+      border-radius: 5px;
+    }
+    body {
+      background-color: #F6D000;
+    }
+    canvas {
+      width: 100%;
+      display: block;
+      border-style: groove;
+      border-color: #002252;
+      border-width: 12px;
+      background-color: #EDF8FF;
+      margin-top: 5px;
+    }
+    .mb {
+      background-color: #FB3318;
+      color:white; 
+    }
+  </style>
+
+</head>
+<body onload="init()">
+ <!--  Nav bar that is responsive (container-fluid with data-toggle at collapse) -->
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Polynomial Solutions</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Quadratic Grapher</a></li>
+        <li><a href="GG.html">General Grapher</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--    our main body of divs that are responsive (go from in-line to block when screen is small) -->
+<div class="container-fluid">    
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <div class="coeff">
+        <p class="formInfo">Coefficients<br>
+
+          a = <input size="5" type="text" id="quadA" value="1"> <br>
+          b = <input size="5" type="text" id="linB" value="2"> <br>
+          c = <input size="5" type="text" id="constant" value="-2"> <br>
+
+        </p>
+        <div class="myButtons">
+          <button type="button" class="btn btn-sm btn-block mb" onclick="QF()">Submit Values</button>
+        </div>
+      </div> <!-- close of coeff -->
+      
+      <div class="myResults">
+        <p id="vertex">vertex is at (?,?)</p>
+        <p id="symLine">symmetry line is at x=?</p>
+        <p id="yint">The Y Intercept is at ???</p>
+        <p id="cp">The Corresponding Point is at (?,?)</p>
+        <p id="solution1">The x-int is at (?,0)</p>
+        <p id="solution2">The x-int is at (?,0)</p>
+
+        <button type="button" class="btn btn-primary glyphicon glyphicon-plus" onclick="zoomIn()"></button>
+        <button type="button" class="btn btn-info glyphicon glyphicon-minus" onclick="zoomOut()"></button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-success" onclick="reset()">Reset</button>
+
+
+
+      </div>
+
+    </div>
+  <div class="col-sm-8 text-left"> 
+    <canvas class="canvasGrids" id="mycanvas"></canvas>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
